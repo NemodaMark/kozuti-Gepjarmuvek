@@ -1,40 +1,43 @@
-myFile = open('uzemanyagfogyasztas.csv')
-myLine = myFile.readlines()
-myFile.close() 
+with open('atlageletkor.csv', encoding='ISO-8859-1') as file:
+    lines = file.readlines()
 
-vehicType = dict()
-year = dict()
-x = []
+vehicle_type = dict()
+year_data = dict()
+data = []
 
-# Split, üres helyek kitörlése, és inté alakítás
-x = [line.strip().split(';') for line in myLine]
-x = [[int(cell.replace(' ', '')) if cell.strip().replace(' ', '').isnumeric() else cell for cell in row] for row in x]
+# Splitting, removing empty spaces, and formatting
+data = [line.strip().split(';') for line in lines]
+data = [[cell.strip() for cell in row] for row in data]
 
-#elsõ sor skip
-x = x[1:]
+# Skip the first row
+header = data[0]
+data = data[1:]
 
-# Minen a második sorból (kulcs a vehicType) és az elsõ év(kulcs az year)
-vehicTypeKeys = x[0]
-yearKey = vehicTypeKeys.pop(0)
+# Extracting vehicle types and the first year (year is the key in year_data)
+vehicle_type_keys = header[1:]
+year_key = header[0]
 
-for item in x:
-    if len(item) < len(vehicTypeKeys):
-        continue  # Ha nincs elég sor, vagy üres a sor skip
+for row_index, item in enumerate(data):
+    if len(item) < len(vehicle_type_keys) + 1:
+        continue  # Skip if there are not enough columns or if the row is empty
 
-    year_value = item[0]
-    vehicType_values = item[1:]
-    vehicType_dict = dict(zip(vehicTypeKeys, vehicType_values))
-    vehicType[year_value] = vehicType_dict
-    year[year_value] = vehicType_values
+    current_year = item[0]
+    vehicle_type_values = item[1:]
+    vehicle_type_dict = dict(zip(vehicle_type_keys, vehicle_type_values))
+    vehicle_type_dict[year_key] = current_year
+    vehicle_type[current_year] = vehicle_type_dict
+    year_data[current_year] = {'Values': vehicle_type_values, 'Position': row_index}
 
-# kiiratás (valamiért hozzáad egy + egyet
-print("vehicType Dictionary:")
-for key, value in vehicType.items():
-    print(f"{yearKey}: {key}")
+# Printing the results
+print("Vehicle Type Dictionary:")
+for key, value in vehicle_type.items():
+    print(f"{year_key}: {value[year_key]} (Row {year_data[key]['Position']})")
     for sub_key, sub_value in value.items():
-        print(f"{sub_key}: {sub_value}")
+        if sub_key != year_key:
+            print(f"{sub_key}: {sub_value}")
 
-print("\nyear Dictionary:")
-for key, value in year.items():
-    print(f"{yearKey}: {key}")
-    print(f"Values: {value}")
+print("\nYear Data Dictionary:")
+for key, value in year_data.items():
+    print(f"{year_key}: {key}")
+    print(f"Values: {value['Values']}")
+    print(f"Position: {value['Position']}")
