@@ -5,21 +5,19 @@ vehicle_type = dict()
 year_data = dict()
 data = []
 
-# Splitting, removing empty spaces, and formatting
 data = [line.strip().split(';') for line in lines]
 data = [[cell.strip() for cell in row] for row in data]
 
-# Skip the first row
+
 header = data[0]
 data = data[1:]
 
-# Extracting vehicle types and the first year (year is the key in year_data)
 vehicle_type_keys = header[1:]
 year_key = header[0]
 
 for row_index, item in enumerate(data):
     if len(item) < len(vehicle_type_keys) + 1:
-        continue  # Skip if there are not enough columns or if the row is empty
+        continue  
 
     current_year = item[0]
     vehicle_type_values = item[1:]
@@ -28,7 +26,6 @@ for row_index, item in enumerate(data):
     vehicle_type[current_year] = vehicle_type_dict
     year_data[current_year] = {'Values': vehicle_type_values, 'Position': row_index}
 
-# Printing the results
 print("Vehicle Type Dictionary:")
 for key, value in vehicle_type.items():
     print(f"{year_key}: {value[year_key]} (Row {year_data[key]['Position']})")
