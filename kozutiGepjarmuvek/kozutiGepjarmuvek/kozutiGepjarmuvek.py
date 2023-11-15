@@ -1,4 +1,7 @@
-﻿# Megnyitom a filet olvasásra
+﻿import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+
+# Megnyitom a filet olvasásra
 with open("atlageletkor.csv", encoding='ISO-8859-1') as file:
     # Kiolvastatom az összes sort
     lines = file.readlines()
@@ -53,19 +56,35 @@ for year in years:
 
 # Szűröm a duplikátumokat és eltávolítom az üres értékeket
 all_cars = list(set(filter(None, all_cars)))
+print(all_cars)
 
 # Kiírom az adatokat minden év esetén
 for year, data_for_year in data_by_year.items():
     print(f"\nAdatok {year}-re/ra:")
     print(data_for_year)
-
 # Gyűjtsd be a felhasználótól a gyártó nevét
 manufacturer_input = input("\nAdja meg a gyártó nevét az adatok megjelenítéséhez: ")
+years = list(data_by_year.keys())
+average_data = [float(data_by_year[year]['atlag'].replace(',', '.')) for year in years]
 
 # Ellenőrizd, hogy a megadott gyártó szerepel-e az adatok között
-if manufacturer_input in all_cars:
+if manufacturer_input in allByYear:
     print(f"\nAdatok a(z) {manufacturer_input} számára:")
     for year, data_for_year in data_by_year.items():
-        print(f"{year}: {data_for_year.get(manufacturer_input, 'N/A')}")
+        print(f"{year}: {data_for_year[manufacturer_input]}")
+        manufacturer_data = [float(data_by_year[year][manufacturer_input].replace(',', '.')) for year in years]
+        # Vonaldiagram készítése
+        plt.plot(years, average_data, label='Átlag')
+        plt.plot(years, manufacturer_data, label=manufacturer_input)
+        # Diagram címe és tengelynevek
+        or_patch = mpatches.Patch(color='orange', label='Évek szerinti adat')
+        bl_patch = mpatches.Patch(color='blue', label='Átlag')
+        plt.legend(handles=[or_patch, bl_patch])
+        plt.title(f'{manufacturer_input} átlag életkor alakulása évenként')
+        plt.xlabel('Év')
+        plt.xticks(years, [f"'{str(year)[-2:]}" for year in years])
+        plt.ylabel('Életkor')
+        # Diagram megjelenítése
+    plt.show()
 else:
     print(f"\nNincs adat a(z) {manufacturer_input} számára.")
