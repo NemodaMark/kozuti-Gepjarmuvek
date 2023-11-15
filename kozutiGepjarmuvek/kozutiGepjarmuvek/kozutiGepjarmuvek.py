@@ -1,10 +1,15 @@
 ﻿import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
+import tkinter as tk
+
 
 # Megnyitom a filet olvasásra
 with open("atlageletkor.csv", encoding='ISO-8859-1') as file:
     # Kiolvastatom az összes sort
     lines = file.readlines()
+    root = tk.Tk()
+
 
 # Külön választom a megnevezéseket és az adatokat
 header = lines[0].strip().split(';')
@@ -63,28 +68,62 @@ for year, data_for_year in data_by_year.items():
     print(f"\nAdatok {year}-re/ra:")
     print(data_for_year)
 # Gyűjtsd be a felhasználótól a gyártó nevét
+
 manufacturer_input = input("\nAdja meg a gyártó nevét az adatok megjelenítéséhez: ")
 years = list(data_by_year.keys())
 average_data = [float(data_by_year[year]['atlag'].replace(',', '.')) for year in years]
 
-# Ellenőrizd, hogy a megadott gyártó szerepel-e az adatok között
 if manufacturer_input in allByYear:
     print(f"\nAdatok a(z) {manufacturer_input} számára:")
-    for year, data_for_year in data_by_year.items():
-        print(f"{year}: {data_for_year[manufacturer_input]}")
-        manufacturer_data = [float(data_by_year[year][manufacturer_input].replace(',', '.')) for year in years]
-        # Vonaldiagram készítése
-        plt.plot(years, average_data, label='Átlag')
-        plt.plot(years, manufacturer_data, label=manufacturer_input)
-        # Diagram címe és tengelynevek
-        or_patch = mpatches.Patch(color='orange', label='Évek szerinti adat')
-        bl_patch = mpatches.Patch(color='blue', label='Átlag')
-        plt.legend(handles=[or_patch, bl_patch])
-        plt.title(f'{manufacturer_input} átlag életkor alakulása évenként')
-        plt.xlabel('Év')
-        plt.xticks(years, [f"'{str(year)[-2:]}" for year in years])
-        plt.ylabel('Életkor')
-        # Diagram megjelenítése
-    plt.show()
+    #for year, data_for_year in data_by_year.items():
+    # print(f"{year}: {data_for_year[manufacturer_input]}")
+       # manufacturer_data = [float(data_by_year[year][manufacturer_input].replace(',', '.')) for year in years]
+    # A Tkinter ablak létrehozása
+    root.title(f'{manufacturer_input} átlag életkor alakulása évenként')
+
+    # Menüsáv létrehozása
+    menubar = tk.Menu(root)
+    root.config(menu=menubar)
+    file_menu = tk.Menu(menubar, tearoff=0)
+    menubar.add_cascade(label="Fájl", menu=file_menu)
+
+    # Kilépés menüpont hozzáadása
+    file_menu.add_command(label="Kilépés", command=root.destroy)
+
+    # Matplotlib diagram létrehozása
+    fig, ax = plt.subplots()
+
+    # Adatok előkészítése
+    manufacturer_data = [float(data_by_year[year][manufacturer_input].replace(',', '.')) for year in years]
+    ax.plot(years, average_data, label='Átlag')
+    ax.plot(years, manufacturer_data, label=manufacturer_input)
+
+    # Jelmagyarázat hozzáadása
+    or_patch = mpatches.Patch(color='orange', label='Évek szerinti adat')
+    bl_patch = mpatches.Patch(color='blue', label='Átlag')
+    ax.legend(handles=[or_patch, bl_patch])
+
+    # Diagram címe és tengelynevek
+    ax.set_title(f'{manufacturer_input} átlag életkor alakulása évenként')
+    ax.set_xlabel('Év')
+    ax.set_xticks(years)
+    ax.set_xticklabels([f"'{str(year)[-2:]}" for year in years])
+    ax.set_ylabel('Életkor')
+
+    # Matplotlib diagram beágyazása a Tkinter ablakba
+    canvas = FigureCanvasTkAgg(fig, master=root)
+    canvas_widget = canvas.get_tk_widget()
+    canvas_widget.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+    # Navigációs eszköztár hozzáadása
+    toolbar = NavigationToolbar2Tk(canvas, root)
+    toolbar.update()
+    canvas_widget.pack()
+    # Ablak méretének beállítása
+    root.geometry("800x600")
+    #Középrehelyezem az ablakot a képernyőhöz képest a méretet figyelembe véve
+    root.eval('tk::PlaceWindow . center')
+    # Tkinter főciklus indítása
+    tk.mainloop()
+
 else:
     print(f"\nNincs adat a(z) {manufacturer_input} számára.")
