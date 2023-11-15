@@ -28,6 +28,9 @@ allByYear = [row[0] for row in data[1:]]  # Feltételezve, hogy az első oszlop 
 # Létrehozok egy szótárat az adatok tárolásához minden év esetén
 data_by_year = {}
 
+# Lista az összes autónak
+all_cars = []
+
 # Végigiterálok az éveken, és tárolom az adatokat a szótárban
 for year in years:
     # Megkeresem az év indexét a fejlécben
@@ -45,6 +48,12 @@ for year in years:
     # Tárolom az adatokat az aktuális évhez a szótárban
     data_by_year[year] = data_for_year
 
+    # Hozzáadom az autókat az összes autó listához
+    all_cars.extend(data_for_year.keys())
+
+# Szűröm a duplikátumokat és eltávolítom az üres értékeket
+all_cars = list(set(filter(None, all_cars)))
+
 # Kiírom az adatokat minden év esetén
 for year, data_for_year in data_by_year.items():
     print(f"\nAdatok {year}-re/ra:")
@@ -54,9 +63,9 @@ for year, data_for_year in data_by_year.items():
 manufacturer_input = input("\nAdja meg a gyártó nevét az adatok megjelenítéséhez: ")
 
 # Ellenőrizd, hogy a megadott gyártó szerepel-e az adatok között
-if manufacturer_input in allByYear:
+if manufacturer_input in all_cars:
     print(f"\nAdatok a(z) {manufacturer_input} számára:")
     for year, data_for_year in data_by_year.items():
-        print(f"{year}: {data_for_year[manufacturer_input]}")
+        print(f"{year}: {data_for_year.get(manufacturer_input, 'N/A')}")
 else:
     print(f"\nNincs adat a(z) {manufacturer_input} számára.")
