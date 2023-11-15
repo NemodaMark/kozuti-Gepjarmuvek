@@ -1,40 +1,51 @@
-with open('atlageletkor.csv', encoding='ISO-8859-1') as file:
+﻿# Megnyitom a filet olvasásra
+with open("atlageletkor.csv", encoding='ISO-8859-1') as file:
+    # Kiolvastatom az összes sort
     lines = file.readlines()
 
-vehicle_type = dict()
-year_data = dict()
-data = []
+# Külön választom a megnevezéseket és az adatokat
+header = lines[0].strip().split(';')
+data_lines = lines[1:]
 
-data = [line.strip().split(';') for line in lines]
-data = [[cell.strip() for cell in row] for row in data]
+# Az adatok ellenőrzése, és a vesszők kicserélése pontokra
+data = [line.strip().split(';') for line in data_lines]
+data = [[cell.replace(',', '.') if cell != '' else '0' for cell in row] for row in data]
 
+# Az "Összesen" sor indexének meghatározása
+osszesen_index = [i for i, row in enumerate(data) if row[0] == 'Összesen'][0]
 
-header = data[0]
-data = data[1:]
+# Minden év adata
+for i in range(1, len(header)):
+    year = header[i]
+    for j in range(1, len(data)):
+        if data[j][i] == '':
+            data[j][i] = data[osszesen_index][i]
 
-vehicle_type_keys = header[1:]
-year_key = header[0]
+# Évek és minden év adatainak kinyerése
+years = header[1:]
+allByYear = [row[0] for row in data[1:]]  # Feltételezve, hogy az első oszlop a gyártóneveket tartalmazza
 
-for row_index, item in enumerate(data):
-    if len(item) < len(vehicle_type_keys) + 1:
-        continue  
+# Létrehozok egy szótárat az adatok tárolásához minden év esetén
+data_by_year = {}
 
-    current_year = item[0]
-    vehicle_type_values = item[1:]
-    vehicle_type_dict = dict(zip(vehicle_type_keys, vehicle_type_values))
-    vehicle_type_dict[year_key] = current_year
-    vehicle_type[current_year] = vehicle_type_dict
-    year_data[current_year] = {'Values': vehicle_type_values, 'Position': row_index}
+# Végigiterálok az éveken, és tárolom az adatokat a szótárban
+for year in years:
+    # Megkeresem az év indexét a fejlécben
+    year_index = header.index(year)
 
-print("Vehicle Type Dictionary:")
-for key, value in vehicle_type.items():
-    print(f"{year_key}: {value[year_key]} (Row {year_data[key]['Position']})")
-    for sub_key, sub_value in value.items():
-        if sub_key != year_key:
-            print(f"{sub_key}: {sub_value}")
+    # Létrehozok egy szótárat az aktuális év adataihoz
+    data_for_year = {manufacturer: row[year_index] for manufacturer, row in zip(allByYear, data[1:])}
 
-print("\nYear Data Dictionary:")
-for key, value in year_data.items():
-    print(f"{year_key}: {key}")
-    print(f"Values: {value['Values']}")
-    print(f"Position: {value['Position']}")
+    # Hozzáadom az "atlag" kulcsot az első adatsorhoz
+    data_for_year['atlag'] = data[0][year_index]
+
+    # Eltávolítom a '0': '0' bejegyzést
+    data_for_year = {k: v for k, v in data_for_year.items() if k != '0'}
+
+    # Tárolom az adatokat az aktuális évhez a szótárban
+    data_by_year[year] = data_for_year
+
+# Kiírom az adatokat minden év esetén
+for year, data_for_year in data_by_year.items():
+    print(f"\nAdatok {year}-re/ra:")
+    print(data_for_year)
