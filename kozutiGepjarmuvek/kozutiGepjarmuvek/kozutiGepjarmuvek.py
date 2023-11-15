@@ -49,3 +49,14 @@ for year in years:
 for year, data_for_year in data_by_year.items():
     print(f"\nAdatok {year}-re/ra:")
     print(data_for_year)
+
+# Gyűjtsd be a felhasználótól a gyártó nevét
+manufacturer_input = input("\nAdja meg a gyártó nevét az adatok megjelenítéséhez: ")
+
+# Ellenőrizd, hogy a megadott gyártó szerepel-e az adatok között
+if manufacturer_input in allByYear:
+    print(f"\nAdatok a(z) {manufacturer_input} számára:")
+    for year, data_for_year in data_by_year.items():
+        print(f"{year}: {data_for_year[manufacturer_input]}")
+else:
+    print(f"\nNincs adat a(z) {manufacturer_input} számára.")
