@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 import tkinter as tk
-from tkinter import simpledialog  #
+from tkinter import simpledialog
+from gui_opt import nevjegy
 
 # Megnyitom a filet olvasásra
 with open("atlageletkor.csv", encoding='ISO-8859-1') as file:
@@ -93,8 +94,8 @@ if manufacturer_input in allByYear:
     menubar.add_cascade(label="Fájl", menu=file_menu)
 
     # Kilépés menüpont hozzáadása
+    file_menu.add_command(label="Névjegy", command=nevjegy)
     file_menu.add_command(label="Kilépés", command=root.destroy)
-
     # Matplotlib diagram létrehozása
     fig, ax = plt.subplots()
 
