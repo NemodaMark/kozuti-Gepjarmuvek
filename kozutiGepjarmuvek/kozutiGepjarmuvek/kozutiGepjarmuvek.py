@@ -7,7 +7,7 @@ with open("atlageletkor.csv", encoding='ISO-8859-1') as file:
     root = tk.Tk()
    # iconfile = tk.PhotoImage(file = 'appicon.png') # Program ikon meghívása
     root.geometry("800x600") # Ablak méretének fixálása
-    root.iconbitmap(default='appicon.ico')
+    root.iconbitmap(default='appicon.ico') # Program ikon beállítása
    # root.iconphoto(False, iconfile) # Ikon beállítása a root ablakra
     root.eval('tk::PlaceWindow . center')   # Középrehelyezem az ablakot a képernyőhöz képest a méretet figyelembe véve
 
