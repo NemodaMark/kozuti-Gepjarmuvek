@@ -86,6 +86,7 @@ if manufacturer_input in allByYear:
        # manufacturer_data = [float(data_by_year[year][manufacturer_input].replace(',', '.')) for year in years]
     # A Tkinter ablak létrehozása
     root.title(f'{manufacturer_input} átlag életkor alakulása évenként')
+    print(f"A grafikon létrehozása a {manufacturer_input} típushoz sikeresen megtörtént")
 
     # Menüsáv létrehozása
     menubar = tk.Menu(root)
