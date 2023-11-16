@@ -73,7 +73,7 @@ print(all_cars)
 for year, data_for_year in data_by_year.items():
     print(f"\nAdatok {year}-re/ra:")
     print(data_for_year)
-# Gyűjtsd be a felhasználótól a gyártó nevét
+# Bekérem felhasználótól a gyártót
 
 manufacturer_input = simpledialog.askstring("Gyártó neve", "Adja meg a gyártó nevét az adatok megjelenítéséhez:", parent=root) #Létrehozom az adatbekérő ablakot
 years = list(data_by_year.keys())
@@ -127,5 +127,5 @@ if manufacturer_input in allByYear:
     # Tkinter főciklus indítása
     tk.mainloop()
 else:
-    print(f"\nNincs adat a(z) {manufacturer_input} számára.")
+    print(f"\nNincs adat a(z) {manufacturer_input} számára.") # Konzolban is kiírja a hibát
     tkinter.messagebox.showerror(title=f"Nincs adat - {manufacturer_input}", message=f"\nNincs adat a(z) {manufacturer_input} számára.") # Kijelzem a hibát egy error ablakban ha nincs adat
