@@ -1,22 +1,19 @@
-import tkinter as tk
-from tkinter import font
-import tkinter.simpledialog as simpledialog
-
+from packages import *
 
 def nevjegy():
     ablak = tk.Toplevel() # Ablak incializálása a főablak (root) mellett
     ablak.title("Névjegy - KSH") # Felugró ablak címe
 
-    félkövér_font = font.Font(weight="bold") # Félkövér betűtípus tárolása
-    dolt_font = font.Font(slant="italic") # Dölt betűtípus tárolása
+    felkover_font = tk.font.Font(weight="bold")
+    dolt_font = tk.font.Font(slant="italic") # Dölt betűtípus tárolása
 
 
     félkövér_szoveg = "A projekt készítői"
-    nevek = "Szabó Brigitta Berta - NeptKód - Projektvezető\nRéz Levente László - RTL7JM - Fejlesztő\nNemoda Márk Levente - BPBYJZ - Fejlesztő\nPethő Máté - NeptKód - Fejlesztő\nPádár Patrik - NeptKód - Fejlesztő"
+    nevek = "Szabó Brigitta Berta - PBJJXL - Projektvezető\nRéz Levente László - RTL7JM - Fejlesztő\nNemoda Márk Levente - BPBYJZ - Fejlesztő\nPethő Máté - JK8H85 - Fejlesztő\nPádár Patrik - GT6MXC - Fejlesztő"
     keszult = ('A Projekt a központi Statisztikai hivatal 24.1.1.26 "A személygépkocsi-állomány átlagos kora gyártmányok szerint" kimutatása alapján készült!')
     teljes_szoveg = f"{félkövér_szoveg}\n\n{nevek}"
 
-    szoveg_label = tk.Label(ablak, text=teljes_szoveg, font=félkövér_font) # Szöveg megjelenítése félkövéren
+    szoveg_label = tk.Label(ablak, text=teljes_szoveg, font=felkover_font) # Szöveg megjelenítése félkövéren
     keszult_label = tk.Label(ablak, text=keszult, font=dolt_font) # Szöveg megjelenítése dölten
     keszult_label.pack(padx=20, pady=20) # Margók a keszult szöveghez
     szoveg_label.pack(padx=20, pady=20) # Margók a teljes_szoveg-hez

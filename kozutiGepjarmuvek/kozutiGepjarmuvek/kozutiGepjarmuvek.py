@@ -1,10 +1,4 @@
-﻿import tkinter.messagebox
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
-import tkinter as tk
-from tkinter import simpledialog
-from gui_opt import *
+﻿from packages import *
 
 # Megnyitom a filet olvasásra
 with open("atlageletkor.csv", encoding='ISO-8859-1') as file:
@@ -111,6 +105,7 @@ if manufacturer_input in allByYear:
     manufacturer_data = [float(data_by_year[year][manufacturer_input].replace(',', '.')) for year in years]
     ax.plot(years, average_data, label='Átlag')
     ax.plot(years, manufacturer_data, label=manufacturer_input)
+    ax.scatter(years, manufacturer_data, color="orange", marker='o', label="Pontdiagram")
 
     # Jelmagyarázat hozzáadása
     or_patch = mpatches.Patch(color='orange', label='Évek szerinti adat')
