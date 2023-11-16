@@ -1,4 +1,6 @@
 from packages import *
+import numpy as np
+from sklearn.linear_model import LinearRegression
 
 def nevjegy():
     ablak = tk.Toplevel() # Ablak incializálása a főablak (root) mellett
@@ -8,10 +10,10 @@ def nevjegy():
     dolt_font = tk.font.Font(slant="italic") # Dölt betűtípus tárolása
 
 
-    félkövér_szoveg = "A projekt készítői"
+    felkover_szoveg = "A projekt készítői"
     nevek = "Szabó Brigitta Berta - PBJJXL - Projektvezető\nRéz Levente László - RTL7JM - Fejlesztő\nNemoda Márk Levente - BPBYJZ - Fejlesztő\nPethő Máté - JK8H85 - Fejlesztő\nPádár Patrik - GT6MXC - Fejlesztő"
     keszult = ('A Projekt a központi Statisztikai hivatal 24.1.1.26 "A személygépkocsi-állomány átlagos kora gyártmányok szerint" kimutatása alapján készült!')
-    teljes_szoveg = f"{félkövér_szoveg}\n\n{nevek}"
+    teljes_szoveg = f"{felkover_szoveg}\n\n{nevek}"
 
     szoveg_label = tk.Label(ablak, text=teljes_szoveg, font=felkover_font) # Szöveg megjelenítése félkövéren
     keszult_label = tk.Label(ablak, text=keszult, font=dolt_font) # Szöveg megjelenítése dölten
@@ -44,3 +46,10 @@ def show_data_for_year(year, data_by_year):
         tk.messagebox.showerror(title=f"Nincs adat - {year}",  message=f"\nNincs adat a(z) {year} számára.")  # Kijelzem a hibát egy error ablakban ha nincs adat
 
 
+def regresszio(x, y):
+    # Adatokat konvertáljuk numerikus értékké
+    x = np.array(x, dtype='float').reshape(-1, 1)
+    y = np.array(y, dtype='float')
+    model = LinearRegression().fit(x, y)   # Létrehozzuk a regressziós modellt
+    y_pred = model.predict(x)     # Meghatározzuk előzetesen az értékeket
+    return y_pred, model.coef_[0], model.intercept_    # Visszatérünk a meghatározott adattal
