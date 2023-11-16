@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="08c21304-1716-4f61-93d3-0f0e444fdf8a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek/gui_opt.py" beforeDir="false" afterPath="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek/gui_opt.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek/kozutiGepjarmuvek.py" beforeDir="false" afterPath="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek/kozutiGepjarmuvek.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +66,7 @@
       <workItem from="1700134158121" duration="2561000" />
       <workItem from="1700136751380" duration="603000" />
       <workItem from="1700138106162" duration="197000" />
-      <workItem from="1700139115145" duration="3144000" />
+      <workItem from="1700139115145" duration="3766000" />
     </task>
     <servers />
   </component>
@@ -84,7 +85,7 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/kozuti_Gepjarmuvek$kozutiGepjarmuvek.coverage" NAME="kozutiGepjarmuvek Coverage Results" MODIFIED="1700141509551" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek" />
-    <SUITE FILE_PATH="coverage/kozuti_Gepjarmuvek$gui_opt.coverage" NAME="gui_opt Coverage Results" MODIFIED="1700135742685" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek" />
+    <SUITE FILE_PATH="coverage/kozuti_Gepjarmuvek$kozutiGepjarmuvek.coverage" NAME="kozutiGepjarmuvek Coverage Results" MODIFIED="1700142846905" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek" />
+    <SUITE FILE_PATH="coverage/kozuti_Gepjarmuvek$gui_opt.coverage" NAME="gui_opt Coverage Results" MODIFIED="1700142819021" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek" />
   </component>
 </project>
