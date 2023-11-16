@@ -5,8 +5,6 @@ from sklearn.linear_model import LinearRegression
 def nevjegy():
     ablak = tk.Toplevel() # Ablak incializálása a főablak (root) mellett
     ablak.title("Névjegy - KSH") # Felugró ablak címe
-    iconfile = tk.PhotoImage(file='appicon.png')  # Program ikon meghívása
-    ablak.iconphoto(False, iconfile) # Ikon beállítása az ablak ablakra
     felkover_font = tk.font.Font(weight="bold")
     dolt_font = tk.font.Font(slant="italic") # Dölt betűtípus tárolása
     felkover_szoveg = "A projekt készítői"
@@ -25,8 +23,6 @@ def show_data_for_year(year, data_by_year):
 
         # A Tkinter ablak létrehozása
         table_window = tk.Toplevel() # Ablak incializálása a főablak (root) mellett
-        iconfile = tk.PhotoImage(file='appicon.png')  # Program ikon meghívása
-        table_window.iconphoto(False, iconfile)  # Ikon beállítása a table_window ablakra
         table_window.title(f'Adatok {year}-re/ra') # Felugró ablak címe
         table_window.geometry("430x720") # Felugró ablak mérete
 
