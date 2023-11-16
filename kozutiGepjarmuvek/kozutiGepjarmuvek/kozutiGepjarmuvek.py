@@ -5,7 +5,9 @@ with open("atlageletkor.csv", encoding='ISO-8859-1') as file:
     # Kiolvastatom az összes sort
     lines = file.readlines()
     root = tk.Tk()
+    iconfile = tk.PhotoImage(file = 'appicon.png') # Program ikon meghívása
     root.geometry("800x600") # Ablak méretének fixálása
+    root.iconphoto(False, iconfile) # Ikon beállítása a root ablakra
     root.eval('tk::PlaceWindow . center')   # Középrehelyezem az ablakot a képernyőhöz képest a méretet figyelembe véve
 
 
