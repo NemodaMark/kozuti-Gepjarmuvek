@@ -1,14 +1,11 @@
 ﻿from packages import *
-
 # Megnyitom a filet olvasásra
 with open("atlageletkor.csv", encoding='ISO-8859-1') as file:
     # Kiolvastatom az összes sort
     lines = file.readlines()
     root = tk.Tk()
-   # iconfile = tk.PhotoImage(file = 'appicon.png') # Program ikon meghívása
     root.geometry("800x600") # Ablak méretének fixálása
     root.iconbitmap(default='appicon.ico') # Program ikon beállítása
-   # root.iconphoto(False, iconfile) # Ikon beállítása a root ablakra
     root.eval('tk::PlaceWindow . center')   # Középrehelyezem az ablakot a képernyőhöz képest a méretet figyelembe véve
 
 
@@ -81,26 +78,28 @@ if manufacturer_input in allByYear:
        # manufacturer_data = [float(data_by_year[year][manufacturer_input].replace(',', '.')) for year in years]
     # A Tkinter ablak létrehozása
     root.title(f'{manufacturer_input} átlag életkor alakulása évenként')  # Az ablak címe
-    print(f"A grafikon létrehozása a(z) {manufacturer_input} típushoz sikeresen megtörtént") # Konzolban jelzem a sikerességet
+    print(f"A grafikon létrehozása a(z) {manufacturer_input} típushoz sikeresen megtörtént") # Konzolban jelzem a generálás sikerességét
 
     # Menüsáv létrehozása
     menubar = tk.Menu(root)
     root.config(menu=menubar)
     file_menu = tk.Menu(menubar, tearoff=0) # Fájl menü incializálása
     options_menu = tk.Menu(menubar, tearoff=0) #Művelet menü incializálása
+    version_menu = tk.Menu(menubar, tearoff=0) # Verzió menü incializálása
     menubar.add_cascade(label="Fájl", menu=file_menu) #Fájl menü megjelenítése
     menubar.add_cascade(label="Művelet", menu=options_menu) #Művelet menü megjelenítése
+    menubar.add_cascade(label="Ver. 1.20", menu=version_menu) #Verzió menü megjelenítése (Ezzel iratjuk ki verziószámot)
     show_data_submenu = tk.Menu(options_menu, tearoff=0) # Almenü létrehozása a művelet fülön belül
-
-    # Kilépés menüpont hozzáadása
+    # Menüpontok hozzáadása a fejléchez
     file_menu.add_command(label="Névjegy", command=nevjegy)
     file_menu.add_command(label="Kilépés", command=root.destroy)
+    #Almenük beépítése
+    options_menu.add_command(label="Összesített Átlagdiagram", command=lambda: osszatlag(data_by_year))
     options_menu.add_cascade(label="Adatok megjelenítése évekre lebontva", menu=show_data_submenu)
     # Az évekhez tartozó menüpontok hozzáadása a show_data_submenu részhez
     for year in years:
-        show_data_submenu.add_command(label=year, command=lambda y=year: show_data_for_year(y, data_by_year))
-    # Matplotlib diagram létrehozása
-    fig, ax = plt.subplots()
+        show_data_submenu.add_command(label=year, command=lambda y=year: evekre_bont(y, data_by_year))
+    fig, ax = plt.subplots()     # Matplotlib diagram létrehozása
 
     # Adatok előkészítése
     manufacturer_data = [float(data_by_year[year][manufacturer_input].replace(',', '.')) for year in years]
@@ -109,7 +108,6 @@ if manufacturer_input in allByYear:
     ax.scatter(years, manufacturer_data, color="orange", marker='o', label="Pontdiagram")
     y_pred, slope, intercept = regresszio(years, manufacturer_data)
     ax.plot(years, y_pred, color='red', linestyle='--', label='Lineáris regresszió')
-
     # Jelmagyarázat hozzáadása
     or_patch = mpatches.Patch(color='orange', label='Évek szerinti adat') # Narancssárga (Évi bontású) jelmagyarázat
     bl_patch = mpatches.Patch(color='blue', label='Átlag') # Kék (Átlag) jelmagyarázat
@@ -123,8 +121,7 @@ if manufacturer_input in allByYear:
     ax.set_xticklabels([f"'{str(year)[-2:]}" for year in years]) # Levágjuk az évszám utolsó két karakterét, és az elején hozzáfűzünk egy aposztrófot
     ax.set_ylabel('Életkor')
 
-    # Matplotlib diagram beágyazása a Tkinter ablakba
-    canvas = FigureCanvasTkAgg(fig, master=root)
+    canvas = FigureCanvasTkAgg(fig, master=root) # diagram beágyazása a főablakba
     canvas_widget = canvas.get_tk_widget()
     canvas_widget.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
     # Navigációs eszköztár hozzáadása

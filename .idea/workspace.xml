@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="08c21304-1716-4f61-93d3-0f0e444fdf8a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek/appicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek/gui_opt.py" beforeDir="false" afterPath="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek/gui_opt.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek/kozutiGepjarmuvek.py" beforeDir="false" afterPath="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek/kozutiGepjarmuvek.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek/packages.py" beforeDir="false" afterPath="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek/packages.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +51,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\densz\Desktop\GDE_Project\kozuti-Gepjarmuvek\kozutiGepjarmuvek\kozutiGepjarmuvek" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -74,6 +80,9 @@
       <workItem from="1700162838496" duration="54000" />
       <workItem from="1700162902575" duration="1022000" />
       <workItem from="1700168274792" duration="2742000" />
+      <workItem from="1700241208934" duration="2028000" />
+      <workItem from="1700244690661" duration="4328000" />
+      <workItem from="1700251588541" duration="1794000" />
     </task>
     <servers />
   </component>
@@ -92,8 +101,9 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/kozuti_Gepjarmuvek$kozutiGepjarmuvek.coverage" NAME="kozutiGepjarmuvek Coverage Results" MODIFIED="1700171722650" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek" />
+    <SUITE FILE_PATH="coverage/kozuti_Gepjarmuvek$kozutiGepjarmuvek.coverage" NAME="kozutiGepjarmuvek Coverage Results" MODIFIED="1700253380729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek" />
     <SUITE FILE_PATH="coverage/kozuti_Gepjarmuvek$packages.coverage" NAME="packages Coverage Results" MODIFIED="1700170711149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek" />
-    <SUITE FILE_PATH="coverage/kozuti_Gepjarmuvek$gui_opt.coverage" NAME="gui_opt Coverage Results" MODIFIED="1700170745206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek" />
+    <SUITE FILE_PATH="coverage/kozuti_Gepjarmuvek$gui_opt.coverage" NAME="gui_opt Coverage Results" MODIFIED="1700253202001" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek" />
+    <SUITE FILE_PATH="coverage/kozuti_Gepjarmuvek$setup.coverage" NAME="setup Coverage Results" MODIFIED="1700251569434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kozutiGepjarmuvek" />
   </component>
 </project>

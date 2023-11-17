@@ -17,7 +17,7 @@ def nevjegy():
     keszult_label.pack(padx=20, pady=20) # Margók a keszult szöveghez
     szoveg_label.pack(padx=20, pady=20) # Margók a teljes_szoveg-hez
 
-def show_data_for_year(year, data_by_year):
+def evekre_bont(year, data_by_year):
     if year and year in data_by_year:
         data_for_year = data_by_year[year]
 
@@ -50,3 +50,37 @@ def regresszio(x, y):
     model = LinearRegression().fit(x, y)   # Létrehozzuk a regressziós modellt
     y_pred = model.predict(x)     # Meghatározzuk előzetesen az x értékeket / értékeket
     return y_pred, model.coef_[0], model.intercept_   # Visszatérünk a meghatározott adattal
+
+def osszatlag(data_by_year):
+    average = tk.Tk()
+    average.title("Összesített Átlag Diagram")
+
+    # Adatok előkészítése
+    years = list(data_by_year.keys())
+    average_data = [float(data_by_year[year]['atlag'].replace(',', '.')) for year in years]
+
+    # Matplotlib diagram létrehozása
+    fig, ax = plt.subplots()
+
+    # Adatok hozzáadása a diagramhoz
+    ax.plot(years, average_data, label='Összesített Átlag', color="green")
+    ax.scatter(years, average_data, color="green", marker='o')
+    ax.legend()
+
+    # Diagram címe és tengelynevek
+    ax.set_title('Összesített Átlag életkor alakulása')
+    ax.set_xlabel('Év')
+    ax.set_xticks(years)
+    ax.set_xticklabels([f"'{str(year)[-2:]}" for year in years])
+    ax.set_ylabel('Átlag életkor')
+
+    # Matplotlib diagram beágyazása a Tkinter ablakba
+    canvas = FigureCanvasTkAgg(fig, master=average)
+    canvas_widget = canvas.get_tk_widget()
+    canvas_widget.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+
+    # Navigációs eszköztár hozzáadása (opcionális)
+    toolbar = NavigationToolbar2Tk(canvas, average)
+    toolbar.update()
+    canvas_widget.pack()
+    average.mainloop()
