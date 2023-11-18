@@ -9,13 +9,16 @@ def nevjegy():
     dolt_font = tk.font.Font(slant="italic") # Dölt betűtípus tárolása
     felkover_szoveg = "A projekt készítői"
     nevek = "Szabó Brigitta Berta - PBJJXL - Projektvezető\nRéz Levente László - RTL7JM - Fejlesztő\nNemoda Márk Levente - BPBYJZ - Fejlesztő\nPethő Máté - JK8H85 - Fejlesztő\nPádár Patrik - GT6MXC - Fejlesztő"
-    keszult = ('A Projekt a központi Statisztikai hivatal 24.1.1.26 "A személygépkocsi-állomány átlagos kora gyártmányok szerint" kimutatása alapján készült!')
     teljes_szoveg = f"{felkover_szoveg}\n\n{nevek}"
+    keszult = ('A Projekt a központi Statisztikai hivatal 24.1.1.26 "A személygépkocsi-állomány átlagos kora gyártmányok szerint" kimutatása alapján készült!')
+    copyright = "A projekt a fent említett személyek kizárolagos tulajdonát képezik, módosítása engedélyköteles!"
 
     szoveg_label = tk.Label(ablak, text=teljes_szoveg, font=felkover_font) # Szöveg megjelenítése félkövéren
     keszult_label = tk.Label(ablak, text=keszult, font=dolt_font) # Szöveg megjelenítése dölten
     keszult_label.pack(padx=20, pady=20) # Margók a keszult szöveghez
     szoveg_label.pack(padx=20, pady=20) # Margók a teljes_szoveg-hez
+    copyright_label = tk.Label(ablak, text=copyright, font=felkover_font) # Szöveg a projektről fülhöz
+    copyright_label.pack(padx=20, pady=20) # Szöveg megjelenítése
 
 def evekre_bont(year, data_by_year):
     if year and year in data_by_year:
@@ -89,3 +92,22 @@ def resetw(root):
     # Az ablak eredeti méretének beállítása
     root.geometry("800x600")  # ablak eredeti mérete
     root.eval('tk::PlaceWindow . center')  # Középrehelyezem az ablakot a képernyőhöz képest a méretet figyelembe véve
+
+def projektrol():
+    ablak = tk.Toplevel() # Ablak incializálása a főablak (root) mellett
+    ablak.title("Projektről - Programozási Alapok") # Felugró ablak címe
+    felkover_font = tk.font.Font(weight="bold") # Félkövér betűtípus tárolása
+    dolt_font = tk.font.Font(slant="italic") # Dölt betűtípus tárolása
+    normal_font = tk.font.Font(weight="normal") # Normál betűtípus tárolása
+    cim = "Feladatkiosztás"
+    szoveg = "Szabó Brigitta Berta - Powerpoint, Dokumentáció\nRéz Levente - PyPlot, Lineáris regresszió, TypeError\nNemoda Márk Levente - Adatbeolvavás, Struktúrált adattárolás, Lineáris regresszió\nPádár Patrik - Statisztikai elemzés PyPlot alapján\nPethő Máthé - Dokumentáció, eredménymegjelenítés"
+    teljes_szoveg = f"{cim}\n\n{szoveg}"
+    elv = "A programunkat grafikusan valósítottuk meg több nyílt forráskódú modul használatával. "
+    hasznalt = "A felhasznált modulok: Matplotlib, NumPY, scikit-learn, Tkinter\nPython 3.10.10 "
+
+    szoveg_label = tk.Label(ablak, text=teljes_szoveg, font=felkover_font) # Szöveg megjelenítése félkövéren
+    szoveg_label.pack(padx=20, pady=20) # Margók a teljes_szoveg-hez
+    elv_label = tk.Label(ablak, text=elv, font=normal_font)
+    elv_label.pack(padx=20, pady=20)
+    hasznalt_label = tk.Label(ablak, text=hasznalt, font=normal_font)
+    hasznalt_label.pack(padx=20, pady=20)

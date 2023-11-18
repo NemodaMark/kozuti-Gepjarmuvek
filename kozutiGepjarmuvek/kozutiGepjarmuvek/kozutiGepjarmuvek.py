@@ -90,10 +90,11 @@ if manufacturer_input in allByYear:
     menubar.add_cascade(label="Fájl", menu=file_menu) #Fájl menü megjelenítése
     menubar.add_cascade(label="Ablak", menu=window_menu)
     menubar.add_cascade(label="Művelet", menu=options_menu) #Művelet menü megjelenítése
-    menubar.add_cascade(label="Ver. 1.21", menu=version_menu) #Verzió menü megjelenítése (Ezzel iratjuk ki verziószámot)
+    menubar.add_cascade(label="Ver. 1.22", menu=version_menu) #Verzió menü megjelenítése (Ezzel iratjuk ki verziószámot)
     show_data_submenu = tk.Menu(options_menu, tearoff=0) # Almenü létrehozása a művelet fülön belül
     # Menüpontok hozzáadása a fejléchez
     window_menu.add_command(label="Visszaállítás", command=lambda: resetw(root))
+    file_menu.add_command(label="Projektről", command=projektrol)
     file_menu.add_command(label="Névjegy", command=nevjegy)
     file_menu.add_command(label="Kilépés", command=root.destroy)
     #Almenük beépítése

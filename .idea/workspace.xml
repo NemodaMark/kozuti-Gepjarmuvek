@@ -104,9 +104,9 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/kozuti_Gepjarmuvek$kozutiGepjarmuvek.coverage" NAME="kozutiGepjarmuvek Coverage Results" MODIFIED="1700304587411" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek" />
+    <SUITE FILE_PATH="coverage/kozuti_Gepjarmuvek$kozutiGepjarmuvek.coverage" NAME="kozutiGepjarmuvek Coverage Results" MODIFIED="1700313346889" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek" />
     <SUITE FILE_PATH="coverage/kozuti_Gepjarmuvek$packages.coverage" NAME="packages Coverage Results" MODIFIED="1700170711149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek" />
-    <SUITE FILE_PATH="coverage/kozuti_Gepjarmuvek$gui_opt.coverage" NAME="gui_opt Coverage Results" MODIFIED="1700304582418" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek" />
+    <SUITE FILE_PATH="coverage/kozuti_Gepjarmuvek$gui_opt.coverage" NAME="gui_opt Coverage Results" MODIFIED="1700312154357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kozutiGepjarmuvek/kozutiGepjarmuvek" />
     <SUITE FILE_PATH="coverage/kozuti_Gepjarmuvek$setup.coverage" NAME="setup Coverage Results" MODIFIED="1700251569434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kozutiGepjarmuvek" />
   </component>
 </project>
