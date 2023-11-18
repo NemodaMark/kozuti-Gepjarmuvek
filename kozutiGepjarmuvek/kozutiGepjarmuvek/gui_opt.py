@@ -84,3 +84,8 @@ def osszatlag(data_by_year):
     toolbar.update()
     canvas_widget.pack()
     average.mainloop()
+
+def resetw(root):
+    # Az ablak eredeti méretének beállítása
+    root.geometry("800x600")  # ablak eredeti mérete
+    root.eval('tk::PlaceWindow . center')  # Középrehelyezem az ablakot a képernyőhöz képest a méretet figyelembe véve
