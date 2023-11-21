@@ -1,4 +1,6 @@
 ﻿from packages import *
+import mplcursors
+
 # Megnyitom a filet olvasásra
 with open("atlageletkor.csv", encoding='ISO-8859-1') as file:
     # Kiolvastatom az összes sort
@@ -90,18 +92,19 @@ if manufacturer_input in allByYear:
     menubar.add_cascade(label="Fájl", menu=file_menu) #Fájl menü megjelenítése
     menubar.add_cascade(label="Ablak", menu=window_menu)
     menubar.add_cascade(label="Művelet", menu=options_menu) #Művelet menü megjelenítése
-    menubar.add_cascade(label="Ver. 1.24", menu=version_menu) #Verzió menü megjelenítése (Ezzel iratjuk ki verziószámot)
+    menubar.add_cascade(label="Ver. 1.25", menu=version_menu) #Verzió menü megjelenítése (Ezzel iratjuk ki verziószámot)
     show_data_submenu = tk.Menu(options_menu, tearoff=0) # Almenü létrehozása a művelet fülön belül
     # Menüpontok hozzáadása a fejléchez
-    window_menu.add_command(label="Visszaállítás", command=lambda: resetw(root))
+    window_menu.add_command(label="Visszaállítás", command=lambda: resetw(root)) # Ablak eredeti méretének visszaállítása
     file_menu.add_command(label="Projektről", command=projektrol)
     file_menu.add_command(label="Névjegy", command=nevjegy)
     file_menu.add_command(label="Kilépés", command=root.destroy)
     #Almenük beépítése
     options_menu.add_command(label="Új lekérés", command=lambda: newkeres(root))
     options_menu.add_command(label="Összesített Átlagdiagram", command=lambda: osszatlag(data_by_year))
+    options_menu.add_command(label="Diagram Elemzése",command=lambda: analizis(data_by_year, years, manufacturer_input))  # menüpont az elemzéshez
     options_menu.add_cascade(label="Adatok megjelenítése évekre lebontva", menu=show_data_submenu)
-    # Az évekhez tartozó menüpontok hozzáadása a show_data_submenu részhez
+# Az évekhez tartozó menüpontok hozzáadása a show_data_submenu részhez
     for year in years:
         show_data_submenu.add_command(label=year, command=lambda y=year: evekre_bont(y, data_by_year))
     fig, ax = plt.subplots()     # Matplotlib diagram létrehozása
@@ -110,30 +113,30 @@ if manufacturer_input in allByYear:
     manufacturer_data = [float(data_by_year[year][manufacturer_input].replace(',', '.')) for year in years]
     ax.plot(years, average_data, label='Átlag')
     ax.plot(years, manufacturer_data, label=manufacturer_input)
-    ax.scatter(years, manufacturer_data, color="orange", marker='o', label="Pontdiagram")
-    y_pred, slope, intercept = regresszio(years, manufacturer_data)
+    ax.scatter(years, manufacturer_data, color="orange", marker='o', label="Pontdiagram") # Pontdiagram színének, jelölésének meghatározása
+    y_pred, slope, intercept = regresszio(years, manufacturer_data) # Regressziós analízis végrehajtása a gyártói adatokra
     ax.plot(years, y_pred, color='red', linestyle='--', label='Lineáris regresszió')
     # Jelmagyarázat hozzáadása
     or_patch = mpatches.Patch(color='orange', label='Évek szerinti adat') # Narancssárga (Évi bontású) jelmagyarázat
     bl_patch = mpatches.Patch(color='blue', label='Átlag') # Kék (Átlag) jelmagyarázat
     red_patch = mpatches.Patch(color='red', label='Regressziós görbe') # Piros (Regressziós) jelmagyarázat
-    ax.legend(handles=[or_patch, bl_patch, red_patch])
+    ax.legend(handles=[or_patch, bl_patch, red_patch]) # Megjelenítem a grafikon mellett a jelmagyarázatot
 
     # Diagram címe és tengelynevek
-    ax.set_title(f'{manufacturer_input} átlag életkor alakulása évenként')
-    ax.set_xlabel('Év')
+    ax.set_title(f'{manufacturer_input} átlag életkor alakulása évenként') # Meghatározom a címet
+    ax.set_xlabel('Év') # Az x tengely címe
     ax.set_xticks(years) # X-tengelyen évek jelennek meg
     ax.set_xticklabels([f"'{str(year)[-2:]}" for year in years]) # Levágjuk az évszám utolsó két karakterét, és az elején hozzáfűzünk egy aposztrófot
-    ax.set_ylabel('Életkor')
+    ax.set_ylabel('Életkor') # Y tengely címe
     canvas = FigureCanvasTkAgg(fig, master=root) # diagram beágyazása a főablakba
     canvas_widget = canvas.get_tk_widget()
     canvas_widget.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
     # Navigációs eszköztár hozzáadása
     toolbar = NavigationToolbar2Tk(canvas, root)
     toolbar.update()
-    canvas_widget.pack()
+    canvas_widget.pack() # Implementálom a toolbar-t
     # Tkinter főciklus indítása
-    mplcursors.cursor(hover=True)
+    mplcursors.cursor(hover = True) # A grafikon különböző pontjain megjelenik az információ
     tk.mainloop()
 else:
   #  print(f"\nNincs adat a(z) {manufacturer_input} számára.") # Konzolban is kiírja a hibát

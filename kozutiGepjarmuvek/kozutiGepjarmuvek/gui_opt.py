@@ -1,5 +1,6 @@
 from packages import *
 import numpy as np
+import mplcursors
 from sklearn.linear_model import LinearRegression
 
 def nevjegy():
@@ -72,10 +73,10 @@ def osszatlag(data_by_year):
 
     # Diagram címe és tengelynevek
     ax.set_title('Összesített Átlag életkor alakulása')
-    ax.set_xlabel('Év')
-    ax.set_xticks(years)
-    ax.set_xticklabels([f"'{str(year)[-2:]}" for year in years])
-    ax.set_ylabel('Átlag életkor')
+    ax.set_xlabel('Év') # X tengely címe
+    ax.set_xticks(years) # X tengely adatai
+    ax.set_xticklabels([f"'{str(year)[-2:]}" for year in years]) # Levágom évszám utolsó két karakterét
+    ax.set_ylabel('Átlag életkor') # Y tengely címe
 
     # Matplotlib diagram beágyazása a Tkinter ablakba
     canvas = FigureCanvasTkAgg(fig, master=average)
@@ -86,6 +87,7 @@ def osszatlag(data_by_year):
     toolbar = NavigationToolbar2Tk(canvas, average)
     toolbar.update()
     canvas_widget.pack()
+    mplcursors.cursor(hover = True) # A grafikon különböző pontjain megjelenik az információ
     average.mainloop()
 
 def resetw(root):
@@ -103,7 +105,7 @@ def projektrol():
     szoveg = "Szabó Brigitta Berta - Powerpoint, Dokumentáció\nRéz Levente László - PyPlot, Lineáris regresszió, TypeError, GUI\nNemoda Márk Levente - Adatbeolvavás, Struktúrált adattárolás, Lineáris regresszió\nPádár Patrik - Statisztikai elemzés PyPlot alapján\nPethő Máté - Dokumentáció, eredménymegjelenítés"
     teljes_szoveg = f"{cim}\n\n{szoveg}"
     elv = "A programunkat grafikusan valósítottuk meg több nyílt forráskódú modul használatával. "
-    hasznalt = "A felhasznált modulok: Matplotlib, NumPY, scikit-learn, Tkinter\nPython 3.10.10 "
+    hasznalt = "A felhasznált modulok: Matplotlib, NumPY, scikit-learn, Tkinter, Statistics, mplcursors\nPython 3.10.10 "
 
     szoveg_label = tk.Label(ablak, text=teljes_szoveg, font=felkover_font) # Szöveg megjelenítése félkövéren
     szoveg_label.pack(padx=20, pady=20) # Margók a teljes_szoveg-hez
@@ -111,3 +113,27 @@ def projektrol():
     elv_label.pack(padx=20, pady=20)
     hasznalt_label = tk.Label(ablak, text=hasznalt, font=normal_font)
     hasznalt_label.pack(padx=20, pady=20)
+
+# gui_opt.py
+
+import tkinter.messagebox as messagebox
+import statistics
+
+def analizis(data_by_year, years, manufacturer_input):
+    # Kinyerem az életkor adatokat a diagramból
+    manufacturer_data = [float(data_by_year[year]['atlag'].replace(',', '.')) for year in years]
+
+    # Számolom a legnagyobb, legkisebb adatot és a mediánt
+    max_age = max(manufacturer_data)
+    min_age = min(manufacturer_data)
+    median_age = statistics.median(manufacturer_data)
+    modus_age = statistics.mode(manufacturer_data)
+
+    # Megjelenítem egy kissebb ablakban az adatokat egymás alatt
+    message = (
+        f"Legnagyobb életkor: {max_age}\n"
+        f"Legkisebb életkor: {min_age}\n"
+        f"Medián életkor: {median_age}\n"
+        f"Leggyakrabban előforduló adat: {modus_age}"
+    )
+    messagebox.showinfo(f"Diagram Elemzése - {manufacturer_input}", message)
