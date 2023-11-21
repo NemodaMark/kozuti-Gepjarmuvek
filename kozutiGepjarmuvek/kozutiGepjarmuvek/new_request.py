@@ -62,12 +62,12 @@ def newkeres(root):
 
     # Szűröm a duplikátumokat és eltávolítom az üres értékeket
     all_cars = list(set(filter(None, all_cars)))
-    print(all_cars)
+  #  print(all_cars)
 
     # Kiírom az adatokat minden év esetén
-    for year, data_for_year in data_by_year.items():
-        print(f"\nAdatok {year}-re/ra:")
-        print(data_for_year)
+    #for year, data_for_year in data_by_year.items():
+    #    print(f"\nAdatok {year}-re/ra:")
+    #    print(data_for_year)
     # Bekérem felhasználótól a gyártót
 
     manufacturer_input = simpledialog.askstring("Gyártó neve", "Adja meg a gyártó nevét az adatok megjelenítéséhez:",
@@ -76,14 +76,14 @@ def newkeres(root):
     average_data = [float(data_by_year[year]['atlag'].replace(',', '.')) for year in years]
 
     if manufacturer_input in allByYear:
-        print(f"\nAdatok a(z) {manufacturer_input} számára:")
+     #   print(f"\nAdatok a(z) {manufacturer_input} számára:")
         # for year, data_for_year in data_by_year.items():
         # print(f"{year}: {data_for_year[manufacturer_input]}")
         # manufacturer_data = [float(data_by_year[year][manufacturer_input].replace(',', '.')) for year in years]
         # A Tkinter ablak létrehozása
         root.title(f'{manufacturer_input} átlag életkor alakulása évenként')  # Az ablak címe
-        print(
-            f"A grafikon létrehozása a(z) {manufacturer_input} típushoz sikeresen megtörtént")  # Konzolban jelzem a generálás sikerességét
+       # print(
+        #    f"A grafikon létrehozása a(z) {manufacturer_input} típushoz sikeresen megtörtént")  # Konzolban jelzem a generálás sikerességét
 
         # Menüsáv létrehozása
         menubar = tk.Menu(root)
@@ -142,8 +142,10 @@ def newkeres(root):
         toolbar.update()
         canvas_widget.pack()
         # Tkinter főciklus indítása
+        mplcursors.cursor(hover=True)
         tk.mainloop()
     else:
-        print(f"\nNincs adat a(z) {manufacturer_input} számára.")  # Konzolban is kiírja a hibát
+      #  print(f"\nNincs adat a(z) {manufacturer_input} számára.")  # Konzolban is kiírja a hibát
         tkinter.messagebox.showerror(title=f"Nincs adat - {manufacturer_input}",
                                      message=f"\nNincs adat a(z) {manufacturer_input} számára.")  # Kijelzem a hibát egy error ablakban ha nincs adat
+        root.destroy()

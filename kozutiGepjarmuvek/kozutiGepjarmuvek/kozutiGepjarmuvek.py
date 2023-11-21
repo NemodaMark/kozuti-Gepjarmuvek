@@ -59,12 +59,12 @@ for year in years:
 
 # Szűröm a duplikátumokat és eltávolítom az üres értékeket
 all_cars = list(set(filter(None, all_cars)))
-print(all_cars)
+#print(all_cars)
 
 # Kiírom az adatokat minden év esetén
-for year, data_for_year in data_by_year.items():
-    print(f"\nAdatok {year}-re/ra:")
-    print(data_for_year)
+#for year, data_for_year in data_by_year.items():
+ #   print(f"\nAdatok {year}-re/ra:")
+  #  print(data_for_year)
 # Bekérem felhasználótól a gyártót
 
 manufacturer_input = simpledialog.askstring("Gyártó neve", "Adja meg a gyártó nevét az adatok megjelenítéséhez:", parent=root) #Létrehozom az adatbekérő ablakot
@@ -72,13 +72,13 @@ years = list(data_by_year.keys())
 average_data = [float(data_by_year[year]['atlag'].replace(',', '.')) for year in years]
 
 if manufacturer_input in allByYear:
-    print(f"\nAdatok a(z) {manufacturer_input} számára:")
+   # print(f"\nAdatok a(z) {manufacturer_input} számára:")
     #for year, data_for_year in data_by_year.items():
     # print(f"{year}: {data_for_year[manufacturer_input]}")
        # manufacturer_data = [float(data_by_year[year][manufacturer_input].replace(',', '.')) for year in years]
     # A Tkinter ablak létrehozása
     root.title(f'{manufacturer_input} átlag életkor alakulása évenként')  # Az ablak címe
-    print(f"A grafikon létrehozása a(z) {manufacturer_input} típushoz sikeresen megtörtént") # Konzolban jelzem a generálás sikerességét
+  #  print(f"A grafikon létrehozása a(z) {manufacturer_input} típushoz sikeresen megtörtént") # Konzolban jelzem a generálás sikerességét
 
     # Menüsáv létrehozása
     menubar = tk.Menu(root)
@@ -90,7 +90,7 @@ if manufacturer_input in allByYear:
     menubar.add_cascade(label="Fájl", menu=file_menu) #Fájl menü megjelenítése
     menubar.add_cascade(label="Ablak", menu=window_menu)
     menubar.add_cascade(label="Művelet", menu=options_menu) #Művelet menü megjelenítése
-    menubar.add_cascade(label="Ver. 1.23", menu=version_menu) #Verzió menü megjelenítése (Ezzel iratjuk ki verziószámot)
+    menubar.add_cascade(label="Ver. 1.24", menu=version_menu) #Verzió menü megjelenítése (Ezzel iratjuk ki verziószámot)
     show_data_submenu = tk.Menu(options_menu, tearoff=0) # Almenü létrehozása a művelet fülön belül
     # Menüpontok hozzáadása a fejléchez
     window_menu.add_command(label="Visszaállítás", command=lambda: resetw(root))
@@ -125,7 +125,6 @@ if manufacturer_input in allByYear:
     ax.set_xticks(years) # X-tengelyen évek jelennek meg
     ax.set_xticklabels([f"'{str(year)[-2:]}" for year in years]) # Levágjuk az évszám utolsó két karakterét, és az elején hozzáfűzünk egy aposztrófot
     ax.set_ylabel('Életkor')
-
     canvas = FigureCanvasTkAgg(fig, master=root) # diagram beágyazása a főablakba
     canvas_widget = canvas.get_tk_widget()
     canvas_widget.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
@@ -134,7 +133,8 @@ if manufacturer_input in allByYear:
     toolbar.update()
     canvas_widget.pack()
     # Tkinter főciklus indítása
+    mplcursors.cursor(hover=True)
     tk.mainloop()
 else:
-    print(f"\nNincs adat a(z) {manufacturer_input} számára.") # Konzolban is kiírja a hibát
+  #  print(f"\nNincs adat a(z) {manufacturer_input} számára.") # Konzolban is kiírja a hibát
     tkinter.messagebox.showerror(title=f"Nincs adat - {manufacturer_input}", message=f"\nNincs adat a(z) {manufacturer_input} számára.") # Kijelzem a hibát egy error ablakban ha nincs adat

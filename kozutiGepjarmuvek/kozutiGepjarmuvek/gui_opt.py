@@ -42,7 +42,7 @@ def evekre_bont(year, data_by_year):
         # Adatok szerkesztésének tiltása
         text_widget.config(state=tk.DISABLED)
     else:
-        print(f"\nNincs adat a(z) {year} évhez.")
+      #  print(f"\nNincs adat a(z) {year} évhez.")
         tk.messagebox.showerror(title=f"Nincs adat - {year}",  message=f"\nNincs adat a(z) {year} számára.")  # Kijelzem a hibát egy error ablakban ha nincs adat
 
 
@@ -100,7 +100,7 @@ def projektrol():
     dolt_font = tk.font.Font(slant="italic") # Dölt betűtípus tárolása
     normal_font = tk.font.Font(weight="normal") # Normál betűtípus tárolása
     cim = "Feladatkiosztás"
-    szoveg = "Szabó Brigitta Berta - Powerpoint, Dokumentáció\nRéz Levente László - PyPlot, Lineáris regresszió, TypeError, GUI\nNemoda Márk Levente - Adatbeolvavás, Struktúrált adattárolás, Lineáris regresszió\nPádár Patrik - Statisztikai elemzés PyPlot alapján\nPethő Máthé - Dokumentáció, eredménymegjelenítés"
+    szoveg = "Szabó Brigitta Berta - Powerpoint, Dokumentáció\nRéz Levente László - PyPlot, Lineáris regresszió, TypeError, GUI\nNemoda Márk Levente - Adatbeolvavás, Struktúrált adattárolás, Lineáris regresszió\nPádár Patrik - Statisztikai elemzés PyPlot alapján\nPethő Máté - Dokumentáció, eredménymegjelenítés"
     teljes_szoveg = f"{cim}\n\n{szoveg}"
     elv = "A programunkat grafikusan valósítottuk meg több nyílt forráskódú modul használatával. "
     hasznalt = "A felhasznált modulok: Matplotlib, NumPY, scikit-learn, Tkinter\nPython 3.10.10 "
