@@ -3,7 +3,7 @@
 __A program a Gábor Dénes egyetem I. Féléves mérnökinformatikus (_MEIN-LA07_) hallgatói által készült a Programozás alapjai tárgyra.__
 
 # Működési elv
-A programunk a KSH oldalán megtalálható fájlból soronként beolvassa az adatokat, majd ezt követően eltárolja őket úgynevezett szótárakba. A program grafikusan került kivitelezésre TKinter modul használatával. Menük, almenük kerültek elhelyezésre, készült jelmagyarázat, illetve diagram címek és tengelynevek kerültek feltűntetésre a könnyebb megértéshez. A felhasználótól bekért év vagy márka megadása után képes a program megjeleníteni az ehhez tartozó adatokat, illetve statisztikai számításokat.
+A programunk a KSH oldalán megtalálható fájlból soronként beolvassa az adatokat, majd ezt követően eltárolja őket úgynevezett szótárakba. A program grafikusan került kivitelezésre TKinter modul használatával. Menük, almenük kerültek elhelyezésre, készült jelmagyarázat, illetve diagram címek és tengelynevek kerültek feltűntetésre a könnyebb megértéshez. A felhasználótól bekért év vagy márka megadása után képes a program megjeleníteni az ehhez tartozó adatokat, illetve statisztikai számításokat. [A grafikus felület működése](https://github.com/NemodaMark/kozuti-Gepjarmuvek/wiki/A-felület-kezelése)
 
 # Szükséges modulok
 - matplotlib
