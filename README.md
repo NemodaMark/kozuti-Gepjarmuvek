@@ -21,7 +21,7 @@ A programunk a KSH oldalán megtalálható fájlból soronként beolvassa az ada
 - Pethő Máté
 
 # Final release
-A könnyebb használat érdekében a legutolsó release-ben (_ver 1.25_) létrehozásra került egy .exe kiterjesztésű telepítőállomány (__GDETelepito.exe__) amellyel Windows operációs rendszerű gépeken telepíthető a program és a Python interpreter megléte nélkül is használható. 
+A könnyebb használat érdekében a legutolsó release-ben (_ver 1.25_) létrehozásra került egy .exe kiterjesztésű telepítőállomány [(__GDETelepito.exe__)](https://github.com/NemodaMark/kozuti-Gepjarmuvek/releases/download/final/GDETelepito.exe) amellyel Windows operációs rendszerű gépeken telepíthető a program és a Python interpreter megléte nélkül is használható. 
 
 # Lábjegyzet
 A felhasznált adatállomány: https://www.ksh.hu/stadat_files/sza/hu/sza0026.html
